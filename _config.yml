@@ -3,7 +3,7 @@
 
 title: "שמעון כרמונה – מורה לנהיגה באילת"
 lang: he
-url: "https://shimon-driving.github.io"   # כשיהיה דומיין: "https://www.example.co.il"
+url: "https://www.shimondriving.co.il"   # כשיהיה דומיין: "https://www.example.co.il"
 baseurl: ""    # אם האתר יושב על username.github.io/שם-ה-repo כתבי כאן "/שם-ה-repo"
 
 plugins:
