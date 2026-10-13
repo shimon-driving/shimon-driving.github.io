@@ -1,0 +1,27 @@
+items:
+  - title: צילום ובדיקת ראייה
+    text: "אצל אופטומטריסט מוסמך (באילת: הלפרין)."
+    links:
+      - url: https://www.gov.il/he/Departments/DynamicCollectors/photo_driving_license_stock?skip=0&limit=10
+        text: רשימת תחנות לבדיקה
+  - title: בקשה והצהרת בריאות
+    text: מילוי טופס באתר משרד התחבורה.
+    links:
+      - url: https://govforms.gov.il/mw/forms/RishumTheory@mot.gov.il?gbxid=1
+        text: לטופס
+  - title: מבחן תיאוריה
+    text: מבחן עיוני בתחנת התיאוריה.
+    links:
+      - url: https://www.gov.il/he/Departments/DynamicCollectors/theoryexamhe_data?skip=0&limit=10
+        text: מאגר שאלות תיאוריה ב-6 שפות
+      - url: https://theory.org.il/
+        text: מוקדים למבחן תיאוריה
+  - title: שיעורי נהיגה
+    text: יוצאים לכביש, עם הסבר בכל צומת.
+    links: []
+  - title: טסט
+    text: מבחן מעשי של משרד התחבורה.
+    links: []
+  - title: הרישיון שלך
+    text: מזל טוב! ונסיעה בטוחה.
+    links: []

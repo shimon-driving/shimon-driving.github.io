@@ -1,0 +1,169 @@
+---
+layout: default
+---
+{% assign s = site.data.site %}
+{% assign h = site.data.home %}
+{% assign wa_text = s.whatsapp_message | uri_escape %}{% assign wa = "https://wa.me/" | append: s.whatsapp_number | append: "?text=" | append: wa_text %}
+
+<!-- כותרת ראשית -->
+<section class="hero" style="background-image: linear-gradient(180deg, rgba(15,16,18,.55) 0%, rgba(15,16,18,.35) 40%, rgba(15,16,18,.92) 100%), url('{{ h.hero.image | relative_url }}');">
+  <div class="wrap hero__inner">
+    <div class="hero__badge">{{ h.hero.badge }}</div>
+    <h1 class="hero__title">{{ h.hero.title_line1 }}<br><span>{{ h.hero.title_line2 }}</span></h1>
+    <p class="hero__text">{{ h.hero.text }}</p>
+    <div class="hero__ctas">
+      <a class="btn btn--yellow btn--lg" href="{{ wa }}">{% include icon.html name="whatsapp" %} {{ h.hero.button_whatsapp }}</a>
+      <a class="btn btn--outline-light btn--lg" href="tel:{{ s.phone_international }}">{% include icon.html name="phone" %} {{ s.phone_display }}</a>
+    </div>
+    <div class="hero__stats">
+      {% for st in h.hero.stats %}
+      <div><div class="hero__num">{{ st.number }}</div><div class="hero__label">{{ st.label }}</div></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<div class="dash-line" aria-hidden="true"></div>
+
+<!-- מי אני -->
+<section id="method" class="section section--sand">
+  <div class="wrap about">
+    <div class="about__text">
+      <div class="eyebrow">{{ h.about.label }}</div>
+      <h2 class="h2">{{ h.about.title }}</h2>
+      <p class="lead">{{ h.about.text }}</p>
+      <div class="points">
+        {% for p in h.about.points %}
+        <div class="point">
+          {% case p.icon %}
+          {% when 'bulb' %}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V16h8v-1.3A7 7 0 0 0 12 2z"/></svg>
+          {% when 'clock' %}<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          {% when 'calendar' %}<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          {% else %}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          {% endcase %}
+          <div class="point__title">{{ p.title }}</div>
+          <div class="point__text">{{ p.text }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="about__img">
+      <img src="{{ h.about.image | relative_url }}" alt="{{ h.about.image_alt }}" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- מסלולים -->
+<section id="routes" class="section">
+  <div class="wrap">
+    <div class="eyebrow eyebrow--yellow">{{ h.routes.label }}</div>
+    <h2 class="h2">{{ h.routes.title }}</h2>
+    <p class="lead lead--muted">{{ h.routes.text }}</p>
+    <div class="cards">
+      {% for r in h.routes.items %}
+      <div class="card{% if r.highlight %} card--yellow{% endif %}">
+        <h3 class="card__title">{{ r.title }}</h3>
+        <p class="card__text">{{ r.text }}</p>
+        <ul class="checks">
+          {% for b in r.bullets %}<li>{{ b }}</li>{% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- הדרך לרישיון -->
+<section id="process" class="section section--sand">
+  <div class="wrap">
+    <div class="eyebrow">{{ h.process.label }}</div>
+    <h2 class="h2">{{ h.process.title }}</h2>
+    <p class="lead lead--muted">{{ h.process.text }}</p>
+    <div class="road">
+      <div class="road__line" aria-hidden="true"></div>
+      <ol class="road__steps">
+        {% for st in site.data.steps.items %}
+        <li class="step">
+          <div class="step__num">{{ forloop.index }}</div>
+          <div class="step__title">{{ st.title }}</div>
+          <div class="step__text">{{ st.text }}</div>
+          {% for l in st.links %}{% if l.url and l.url != "" %}
+          <a class="step__link" href="{{ l.url }}" target="_blank" rel="noopener">{{ l.text | default: "לפרטים" }} ←</a>
+          {% endif %}{% endfor %}
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- המלצות (מופיע רק כשיש המלצות) -->
+{% if site.data.reviews.items and site.data.reviews.items.size > 0 %}
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow eyebrow--yellow">{{ h.reviews.label }}</div>
+    <h2 class="h2">{{ h.reviews.title }}</h2>
+    <div class="cards">
+      {% for r in site.data.reviews.items %}
+      <figure class="card review">
+        <div class="review__stars" aria-label="5 כוכבים">★★★★★</div>
+        <blockquote>{{ r.text }}</blockquote>
+        <figcaption>{{ r.name }}</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+    <a class="text-link" href="{{ s.google_reviews_url }}">{{ h.reviews.link_text }} ←</a>
+  </div>
+</section>
+{% endif %}
+
+<!-- רשתות חברתיות -->
+<section id="social" class="section section--dark2">
+  <div class="wrap social">
+    <div class="social__text">
+      <div class="eyebrow eyebrow--yellow">{{ h.social.label }}</div>
+      <h2 class="h2">{{ h.social.title }}</h2>
+      <p class="lead lead--muted">{{ h.social.text }}</p>
+    </div>
+    <div class="social__cards">
+      <a class="social-card" href="{{ s.instagram_url }}">
+        <span class="social-card__icon">{% include icon.html name="instagram" %}</span>
+        <span><span class="social-card__name">אינסטגרם</span><span class="social-card__handle" dir="ltr">{{ s.instagram_handle }}</span></span>
+      </a>
+      <a class="social-card" href="{{ s.tiktok_url }}">
+        <span class="social-card__icon">{% include icon.html name="tiktok" %}</span>
+        <span><span class="social-card__name">טיקטוק</span><span class="social-card__handle" dir="ltr">{{ s.tiktok_handle }}</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- שאלות ותשובות -->
+<section id="faq" class="section section--sand">
+  <div class="wrap wrap--narrow">
+    <div class="eyebrow">{{ h.faq.label }}</div>
+    <h2 class="h2">{{ h.faq.title }}</h2>
+    <div class="faq">
+      {% for f in site.data.faq.items %}
+      <details class="faq__item"{% if forloop.first %} open{% endif %}>
+        <summary>{{ f.question }}<span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__answer">{{ f.answer | newline_to_br }}</div>
+      </details>
+      {% endfor %}
+    </div>
+    <p class="faq__bottom">{{ h.faq.bottom_text }} <a href="{{ wa }}">{{ h.faq.bottom_link }}</a></p>
+  </div>
+</section>
+
+<!-- יצירת קשר -->
+<section id="contact" class="contact">
+  <div class="wrap contact__row">
+    <div class="contact__text">
+      <h2 class="contact__title">{{ h.contact.title }}</h2>
+      <p>{{ h.contact.text }}</p>
+    </div>
+    <div class="contact__btns">
+      <a class="btn btn--dark btn--lg" href="{{ wa }}">{% include icon.html name="whatsapp" %} שלחו הודעה בוואטסאפ</a>
+      <a class="btn btn--outline-dark btn--lg" href="tel:{{ s.phone_international }}">התקשרו: {{ s.phone_display }}</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+{%- assign s = site.data.site -%}
+{%- assign h = site.data.home -%}
+# {{ s.name }} – {{ s.role }} ב{{ s.area }}
+
+> {{ s.seo_description }}
+
+## פרטים
+- שם: {{ s.name }}
+- תחום: {{ s.role }}, רישיון לרכב פרטי (דרגה B)
+- אזור: {{ s.area }}
+- ימי פעילות: {{ s.hours }}
+- טלפון: {{ s.phone_display }}
+- וואטסאפ: https://wa.me/{{ s.whatsapp_number }}
+- אינסטגרם: {{ s.instagram_url }}
+- טיקטוק: {{ s.tiktok_url }}
+- אתר: {{ "/" | absolute_url }}
+
+## {{ h.about.label }}
+{{ h.about.text }}
+
+## {{ h.routes.title }}
+{% for r in h.routes.items %}- {{ r.title }}: {{ r.text }}
+{% endfor %}
+## {{ h.process.label }}
+{% for st in site.data.steps.items %}{{ forloop.index }}. {{ st.title }} – {{ st.text }}
+{% endfor %}
+## {{ h.faq.label }}
+{% for f in site.data.faq.items %}
+### {{ f.question }}
+{{ f.answer }}
+{% endfor %}

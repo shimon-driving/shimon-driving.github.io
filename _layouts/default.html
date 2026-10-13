@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ site.data.site.seo_description }}">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:site_name" content="{{ site.data.site.name }}">
+  <meta property="og:locale" content="he_IL">
+  <meta property="og:title" content="{{ site.title }}">
+  <meta property="og:description" content="{{ site.data.site.seo_description }}">
+  <meta property="og:image" content="{{ site.data.site.share_image | absolute_url }}">
+  <link rel="icon" href="{{ site.data.site.logo | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {% assign s = site.data.site %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "DrivingSchool",
+    "name": {{ s.name | append: " – " | append: s.role | jsonify }},
+    "description": {{ s.seo_description | jsonify }},
+    "telephone": {{ s.phone_international | jsonify }},
+    "address": { "@type": "PostalAddress", "addressLocality": "אילת", "addressCountry": "IL" },
+    "areaServed": [{ "@type": "City", "name": "אילת" }, { "@type": "Place", "name": "הערבה" }],
+    "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"] },
+    "knowsLanguage": "he",
+    "image": {{ s.share_image | absolute_url | jsonify }},
+    "logo": {{ s.logo | absolute_url | jsonify }},
+    "url": {{ '/' | absolute_url | jsonify }},
+    "sameAs": [{{ s.instagram_url | jsonify }}, {{ s.tiktok_url | jsonify }}]
+  }
+  </script>
+  {% if page.url == "/" and site.data.faq.items.size > 0 %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{% for f in site.data.faq.items %}
+      { "@type": "Question", "name": {{ f.question | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ f.answer | jsonify }} } }{% unless forloop.last %},{% endunless %}{% endfor %}
+    ]
+  }
+  </script>
+  {% endif %}
+</head>
+<body>
+  <a class="skip" href="#main">דלג לתוכן</a>
+  {% assign wa_text = s.whatsapp_message | uri_escape %}{% assign wa = "https://wa.me/" | append: s.whatsapp_number | append: "?text=" | append: wa_text %}
+
+  <header class="header">
+    <div class="wrap header__row">
+      <a class="brand" href="{{ '/' | relative_url }}">
+        <img src="{{ s.logo | relative_url }}" alt="לוגו נתיב 2000" width="91" height="44">
+        <span class="brand__text">
+          <span class="brand__name">{{ s.name }}</span>
+          <span class="brand__sub">{{ s.role }} · {{ s.area }}</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="ניווט ראשי">
+        <a href="{{ '/#method' | relative_url }}">השיטה</a>
+        <a href="{{ '/#routes' | relative_url }}">מסלולים</a>
+        <a href="{{ '/#process' | relative_url }}">הדרך לרישיון</a>
+        <a href="{{ '/#faq' | relative_url }}">שאלות</a>
+        <a href="{{ '/#contact' | relative_url }}">צור קשר</a>
+      </nav>
+      <a class="btn btn--yellow btn--sm" href="{{ wa }}">{% include icon.html name="whatsapp" %} וואטסאפ</a>
+    </div>
+  </header>
+
+  <main id="main">
+    {{ content }}
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__cols">
+      <div class="footer__col">
+        <img src="{{ s.logo | relative_url }}" alt="לוגו נתיב 2000" width="99" height="48">
+        <p>{{ s.name }} – {{ s.role }}<br>{{ s.area }} · {{ s.hours }}</p>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__title">יצירת קשר</h2>
+        <a href="tel:{{ s.phone_international }}">{{ s.phone_display }}</a>
+        <a href="{{ wa }}">וואטסאפ</a>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__title">עקבו אחרי</h2>
+        <a href="{{ s.instagram_url }}">אינסטגרם</a>
+        <a href="{{ s.tiktok_url }}">טיקטוק</a>
+        <a href="{{ s.google_reviews_url }}">ביקורות בגוגל</a>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__title">מידע</h2>
+        <a href="{{ '/accessibility/' | relative_url }}">הצהרת נגישות</a>
+      </div>
+    </div>
+    <div class="wrap footer__bottom">© {{ 'now' | date: "%Y" }} {{ s.name }} · מבית נתיב 2000</div>
+  </footer>
+
+  <a class="wa-float" href="{{ wa }}" aria-label="שליחת הודעה בוואטסאפ">{% include icon.html name="whatsapp" %}</a>
+</body>
+</html>
