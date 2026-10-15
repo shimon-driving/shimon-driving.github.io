@@ -118,11 +118,13 @@
       <div class="footer__col">
         <h2 class="footer__title">מידע</h2>
         <a href="{{ '/accessibility/' | relative_url }}">הצהרת נגישות</a>
+        <a href="{{ '/privacy/' | relative_url }}">מדיניות פרטיות</a>
       </div>
     </div>
     <div class="wrap footer__bottom">© {{ 'now' | date: "%Y" }} {{ s.name }} · מבית נתיב 2000</div>
   </footer>
 
+  {% include a11y.html %}
   <a class="wa-float" href="{{ wa }}" aria-label="שליחת הודעה בוואטסאפ">{% include icon.html name="whatsapp" %}</a>
 </body>
 </html>
