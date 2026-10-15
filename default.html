@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   {% assign s = site.data.site %}
-  {% assign ga = site.ga_id | default: s.ga_id %}
+  {% assign ga = site.google_analytics | default: site.ga_id | default: s.ga_id %}
   {% if ga and ga != "" %}
   <!-- Google Analytics 4 – המזהה נקבע ב-_config.yml בשורה ga_id -->
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga }}"></script>
