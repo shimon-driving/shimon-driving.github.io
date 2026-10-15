@@ -1,13 +1,12 @@
-# הגדרות טכניות של האתר – אין צורך לערוך כאן.
-# את כל התוכן עורכים דרך Pages CMS (או בקבצים שבתיקייה _data).
-
 title: "שמעון כרמונה – מורה לנהיגה באילת"
 lang: he
-url: "https://www.shimondriving.co.il"   # כשיהיה דומיין: "https://www.example.co.il"
-baseurl: ""    # אם האתר יושב על username.github.io/שם-ה-repo כתבי כאן "/שם-ה-repo"
-ga_id:"G-VWW02EHMJN"  
+url: "https://www.shimondriving.co.il"
+baseurl: ""
+
+google_analytics: "G-VWW02EHMJN"
+
 plugins:
-  - jekyll-sitemap   # יוצר sitemap.xml אוטומטית לגוגל
+  - jekyll-sitemap
 
 exclude:
   - README.md
