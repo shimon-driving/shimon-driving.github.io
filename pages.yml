@@ -1,0 +1,196 @@
+# הגדרות Pages CMS – קובע אילו טפסי עריכה יופיעו ב-app.pagescms.org
+media:
+  input: assets/images
+  output: /assets/images
+
+content:
+  - name: faq
+    label: שאלות ותשובות
+    type: file
+    path: _data/faq.yml
+    format: yaml
+    fields:
+      - name: items
+        label: שאלות
+        type: object
+        list: true
+        fields:
+          - { name: question, label: שאלה, type: string }
+          - { name: answer, label: תשובה, type: text }
+
+  - name: steps
+    label: הדרך לרישיון (שלבים)
+    type: file
+    path: _data/steps.yml
+    format: yaml
+    fields:
+      - name: items
+        label: שלבים (המספור אוטומטי לפי הסדר)
+        type: object
+        list: true
+        fields:
+          - { name: title, label: כותרת השלב, type: string }
+          - { name: text, label: הסבר, type: text }
+          - name: links
+            label: קישורים (לא חובה, אפשר כמה)
+            type: object
+            list: true
+            fields:
+              - { name: text, label: טקסט הקישור, type: string }
+              - { name: url, label: כתובת, type: string }
+
+  - name: reviews
+    label: המלצות
+    type: file
+    path: _data/reviews.yml
+    format: yaml
+    fields:
+      - name: items
+        label: המלצות (כשהרשימה ריקה האזור לא מופיע)
+        type: object
+        list: true
+        fields:
+          - { name: text, label: טקסט ההמלצה, type: text }
+          - { name: name, label: שם, type: string }
+
+  - name: home
+    label: טקסטים בעמוד הבית
+    type: file
+    path: _data/home.yml
+    format: yaml
+    fields:
+      - name: hero
+        label: כותרת ראשית
+        type: object
+        fields:
+          - { name: badge, label: תגית מעל הכותרת, type: string }
+          - { name: title_line1, label: כותרת – שורה 1 (לבן), type: string }
+          - { name: title_line2, label: כותרת – שורה 2 (צהוב), type: string }
+          - { name: text, label: טקסט מתחת לכותרת, type: text }
+          - { name: button_whatsapp, label: טקסט כפתור וואטסאפ, type: string }
+          - { name: image, label: תמונת רקע, type: image }
+          - name: stats
+            label: מספרים
+            type: object
+            list: true
+            fields:
+              - { name: number, label: מספר, type: string }
+              - { name: label, label: תיאור, type: string }
+      - name: about
+        label: מי אני
+        type: object
+        fields:
+          - { name: label, label: תגית, type: string }
+          - { name: title, label: כותרת, type: string }
+          - { name: text, label: טקסט, type: text }
+          - { name: image, label: תמונה, type: image }
+          - { name: image_alt, label: תיאור התמונה (לנגישות), type: string }
+          - name: points
+            label: שלוש נקודות
+            type: object
+            list: true
+            fields:
+              - name: icon
+                label: אייקון
+                type: select
+                options:
+                  values: [bulb, clock, calendar, check]
+              - { name: title, label: כותרת, type: string }
+              - { name: text, label: טקסט, type: string }
+      - name: routes
+        label: מה לומדים
+        type: object
+        fields:
+          - { name: label, label: תגית, type: string }
+          - { name: title, label: כותרת, type: string }
+          - { name: text, label: טקסט, type: text }
+          - name: items
+            label: כרטיסים
+            type: object
+            list: true
+            fields:
+              - { name: title, label: כותרת, type: string }
+              - { name: highlight, label: כרטיס צהוב, type: boolean }
+              - { name: text, label: טקסט, type: text }
+              - { name: bullets, label: נקודות, type: string, list: true }
+      - name: process
+        label: הדרך לרישיון – כותרות
+        type: object
+        fields:
+          - { name: label, label: תגית, type: string }
+          - { name: title, label: כותרת, type: string }
+          - { name: text, label: טקסט, type: text }
+      - name: reviews
+        label: המלצות – כותרות
+        type: object
+        fields:
+          - { name: label, label: תגית, type: string }
+          - { name: title, label: כותרת, type: string }
+          - { name: link_text, label: טקסט קישור לגוגל, type: string }
+      - name: social
+        label: רשתות חברתיות
+        type: object
+        fields:
+          - { name: label, label: תגית, type: string }
+          - { name: title, label: כותרת, type: string }
+          - { name: text, label: טקסט, type: text }
+      - name: faq
+        label: שאלות ותשובות – כותרות
+        type: object
+        fields:
+          - { name: label, label: תגית, type: string }
+          - { name: title, label: כותרת, type: string }
+          - { name: bottom_text, label: טקסט בתחתית, type: string }
+          - { name: bottom_link, label: טקסט הקישור לוואטסאפ, type: string }
+      - name: contact
+        label: אזור יצירת קשר
+        type: object
+        fields:
+          - { name: title, label: כותרת, type: string }
+          - { name: text, label: טקסט, type: text }
+
+  - name: site
+    label: פרטים כלליים (טלפון, רשתות)
+    type: file
+    path: _data/site.yml
+    format: yaml
+    fields:
+      - { name: name, label: שם, type: string }
+      - { name: role, label: תפקיד, type: string }
+      - { name: area, label: אזור, type: string }
+      - { name: hours, label: ימים ושעות, type: string }
+      - { name: phone_display, label: טלפון לתצוגה, type: string }
+      - { name: phone_international, label: "טלפון בפורמט בינלאומי (+972...)", type: string }
+      - { name: whatsapp_number, label: "מספר וואטסאפ (972... בלי +)", type: string }
+      - { name: whatsapp_message, label: הודעה שמופיעה מראש כששולחים וואטסאפ מהאתר, type: string }
+      - { name: instagram_url, label: קישור לאינסטגרם, type: string }
+      - { name: instagram_handle, label: שם משתמש באינסטגרם, type: string }
+      - { name: tiktok_url, label: קישור לטיקטוק, type: string }
+      - { name: tiktok_handle, label: שם משתמש בטיקטוק, type: string }
+      - { name: google_reviews_url, label: קישור לביקורות בגוגל, type: string }
+      - { name: logo, label: לוגו, type: image }
+      - { name: seo_description, label: תיאור לגוגל, type: text }
+      - { name: share_image, label: תמונה לשיתוף ברשתות, type: image }
+      - { name: ga_id, label: "מזהה Google Analytics (G-XXXXXXX)", type: string }
+
+  - name: accessibility
+    label: הצהרת נגישות
+    type: file
+    path: accessibility.md
+    format: yaml-frontmatter
+    fields:
+      - { name: layout, label: layout, type: string, hidden: true }
+      - { name: title, label: כותרת, type: string }
+      - { name: permalink, label: permalink, type: string, hidden: true }
+      - { name: body, label: תוכן, type: rich-text }
+
+  - name: privacy
+    label: מדיניות פרטיות
+    type: file
+    path: privacy.md
+    format: yaml-frontmatter
+    fields:
+      - { name: layout, label: layout, type: string, hidden: true }
+      - { name: title, label: כותרת, type: string }
+      - { name: permalink, label: permalink, type: string, hidden: true }
+      - { name: body, label: תוכן, type: rich-text }
