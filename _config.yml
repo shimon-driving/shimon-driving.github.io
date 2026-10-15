@@ -5,7 +5,7 @@ title: "שמעון כרמונה – מורה לנהיגה באילת"
 lang: he
 url: "https://www.shimondriving.co.il"   # כשיהיה דומיין: "https://www.example.co.il"
 baseurl: ""    # אם האתר יושב על username.github.io/שם-ה-repo כתבי כאן "/שם-ה-repo"
-
+google_analytics: "G-VWW02EHMJN"  
 plugins:
   - jekyll-sitemap   # יוצר sitemap.xml אוטומטית לגוגל
 
